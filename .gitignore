@@ -1,3 +1,4 @@
-workspace/build
-workspace/install
-workspace/log
+*/build
+*/install
+*/log
+*__pycache__
