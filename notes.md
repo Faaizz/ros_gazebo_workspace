@@ -15,6 +15,7 @@
     - [ROS 2 Launch](#ros-2-launch)
     - [Recording & Playing Back Data](#recording--playing-back-data)
   - [Workspaces](#workspaces)
+    - [Packages](#packages)
 
 
 ## Basics
@@ -109,4 +110,22 @@ ros2 bag play <bag_name>
 rosdep install -i --from-path <src_path> --rosdistro galactic -y
 # Override OS
 export ROS_OS_OVERRIDE="ubuntu"
+```
+
+### Packages
+```shell
+# cd into: workspace/src
+# Create a package: with simple node (Hello World)
+ros2 pkg create --build-type ament_python --node-name <simple_node_name> <package_name>
+# cd back to workspace root
+# Install dependencies
+rosdep install -i --from-path src --rosdistro <ros_distro> -y
+# Build package
+colcon build --symlink-install
+# Source overlay
+source install/setup.bash
+```
+Packages can be created with dependencies, an example is:
+```shell
+ros2 pkg create --build-type ament_python my_pkg --dependencies rclpy example_interfaces
 ```
