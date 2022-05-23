@@ -16,6 +16,8 @@
     - [Recording & Playing Back Data](#recording--playing-back-data)
   - [Workspaces](#workspaces)
     - [Packages](#packages)
+  - [Debugging](#debugging)
+    - [ROS 2 Doctor (`ros2doctor`)](#ros-2-doctor-ros2doctor)
 
 
 ## Basics
@@ -129,3 +131,15 @@ Packages can be created with dependencies, an example is:
 ```shell
 ros2 pkg create --build-type ament_python my_pkg --dependencies rclpy example_interfaces
 ```
+
+
+## Debugging
+
+### ROS 2 Doctor (`ros2doctor`)
+```shell
+# examine general ROS 2 setup
+ros2 doctor
+# get full report
+ros2 doctor --report
+```
+`ros2 doctor` can also be run when ROS 2 nodes are running, their corresponding errors/warnings would be listed.
