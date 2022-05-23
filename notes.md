@@ -92,9 +92,10 @@ ros2 run rqt_console rqt_console0
 
 ### ROS 2 Launch
 ```shell
-# Run launch file
-ros2 launch <pkg_name> <launch_file>
-
+# Run launch file (standalone)
+ros2 launch <path_to_launch_file> # E.g. ros2 launch my_pkg demo_launch.launch.py
+# Run launch file via a package
+ros2 launch <pkg_name> <launch_file_name> # E.g. ros2 launch my_pkg demo_launch.launch.py
 ```
 
 ### Recording & Playing Back Data
