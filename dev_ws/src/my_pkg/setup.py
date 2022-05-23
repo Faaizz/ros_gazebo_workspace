@@ -23,6 +23,8 @@ setup(
             'my_node = my_pkg.my_node:main',
             'talker = my_pkg.publisher_member_function:main',
             'listener = my_pkg.subscriber_member_function:main',
+            'add_service = my_pkg.service_member_function:main',
+            'add_client = my_pkg.client_member_function:main',
         ],
     },
 )
