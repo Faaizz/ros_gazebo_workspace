@@ -25,6 +25,7 @@ setup(
             'listener = my_pkg.subscriber_member_function:main',
             'add_service = my_pkg.service_member_function:main',
             'add_client = my_pkg.client_member_function:main',
+            'param_node = my_pkg.parameters_node:main',
         ],
     },
 )
