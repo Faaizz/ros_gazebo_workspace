@@ -18,6 +18,7 @@
     - [Packages](#packages)
   - [Debugging](#debugging)
     - [ROS 2 Doctor (`ros2doctor`)](#ros-2-doctor-ros2doctor)
+  - [Introduction to tf2](#introduction-to-tf2)
 
 
 ## Basics
@@ -148,3 +149,27 @@ ros2 doctor
 ros2 doctor --report
 ```
 `ros2 doctor` can also be run when ROS 2 nodes are running, their corresponding errors/warnings would be listed.
+
+
+## Introduction to tf2
+```shell
+# Install tf2 tools:
+sudo apt-get install ros-foxy-turtle-tf2-py ros-foxy-tf2-tools ros-foxy-tf-transformations
+pip3 install transform3d
+
+# Create a graph of frames that are being broadcasted
+ros2 run tf2_tools view_frames.py
+# Report transform between 2 frames
+ros2 run tf2_ros tf2_echo <reference_frame> <target_frame>
+
+# Start rviz to examine frames
+ros2 run rviz2 rviz2
+
+# Check static transforms being published
+ros2 topic echo --qos-reliability reliable --qos-durability transient_local /tf_static
+
+# Publish static transforms (can also be done using a launch_ros.actions.Node in a launch file)
+ros2 run tf2_ros static_transform_publisher x y z yaw pitch roll frame_id child_frame_id
+# or using quaterion
+ros2 run tf2_ros static_transform_publisher x y z qx qy qz qw frame_id child_frame_id
+```
