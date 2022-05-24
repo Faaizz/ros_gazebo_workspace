@@ -27,4 +27,17 @@ def generate_launch_description():
             executable = 'listener',
             name = 'sim',
         ),
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource([
+                PathJoinSubstitution([
+                    FindPackageShare('my_pkg'),
+                    'talker_listener_event_handler.launch.py',
+                ])
+            ]),
+            launch_arguments={
+                'node_ns': 'talker_listener_evnt_hdlr',
+                'timer_period': '10',
+                'name_config': '"Faaizz"',
+            }.items()
+        ),
     ])
