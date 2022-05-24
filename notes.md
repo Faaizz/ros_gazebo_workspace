@@ -96,6 +96,10 @@ ros2 run rqt_console rqt_console0
 ros2 launch <path_to_launch_file> # E.g. ros2 launch my_pkg demo_launch.launch.py
 # Run launch file via a package
 ros2 launch <pkg_name> <launch_file_name> # E.g. ros2 launch my_pkg demo_launch.launch.py
+# Check arguments that can be passed to launch files
+ros2 launch <pkg_name> <launch_file_name> --show-args
+# Run launch file with arguments
+ros2 launch <pkg_name> <launch_file_name> arg1_name:="arg1_value" arg2_name:="arg2_value"
 ```
 
 ### Recording & Playing Back Data
