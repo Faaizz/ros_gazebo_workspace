@@ -30,6 +30,7 @@ setup(
             'add_service = my_pkg.service_member_function:main',
             'add_client = my_pkg.client_member_function:main',
             'param_node = my_pkg.parameters_node:main',
+            'static_tf2_broadcaster = my_pkg.static_tf2_broadcaster:main',
         ],
     },
 )
