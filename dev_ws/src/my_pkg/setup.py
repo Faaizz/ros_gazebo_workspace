@@ -32,6 +32,7 @@ setup(
             'param_node = my_pkg.parameters_node:main',
             'static_tf2_broadcaster = my_pkg.static_tf2_broadcaster:main',
             'tf2_listener = my_pkg.tf2_listener:main',
+            'frame_tf2_broadcaster = my_pkg.frame_tf2_broadcaster:main',
         ],
     },
 )
