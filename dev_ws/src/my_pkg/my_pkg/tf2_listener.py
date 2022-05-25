@@ -12,8 +12,11 @@ class FrameListener(Node):
         super().__init__('frame_listener')
 
         # Declare target_frame parameter
-        self.declare_parameter('target_frame', 'world')
-        self.targetFrame = self.get_parameter('target_frame').get_parameter_value().string_value
+        self.declare_parameter('from_frame', 'world')
+        self.fromFrame = self.get_parameter('from_frame').get_parameter_value().string_value
+
+        self.declare_parameter('to_frame', 'link1')
+        self.toFrame = self.get_parameter('to_frame').get_parameter_value().string_value
 
         self.tfBuffer = Buffer()
         self.tfListener = TransformListener(self.tfBuffer, self)
@@ -23,8 +26,8 @@ class FrameListener(Node):
         self.timer = self.create_timer(period, self.onTimer)
 
     def onTimer(self):
-        fromFrame = self.targetFrame
-        toFrame = 'my_frame'
+        fromFrame = self.fromFrame
+        toFrame = self.toFrame
 
         now = rclpy.time.Time()
         try:
