@@ -23,7 +23,11 @@ def main(args=None):
 
     myService = MyService()
 
-    rclpy.spin(myService)
+    try:
+        rclpy.spin(myService)
+    except KeyboardInterrupt:
+        pass
+    
     rclpy.shutdown()
 
 if __name__ == '__main__':

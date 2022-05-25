@@ -45,7 +45,10 @@ def main(args=None):
 
     myPublisher = MyPublisher()
 
-    rclpy.spin(myPublisher)
+    try:
+        rclpy.spin(myPublisher)
+    except KeyboardInterrupt:
+        pass
 
     # Explucitly destroy node
     myPublisher.destroy_node()

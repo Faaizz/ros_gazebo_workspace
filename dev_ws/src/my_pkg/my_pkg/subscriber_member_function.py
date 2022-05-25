@@ -23,7 +23,10 @@ def main(args=None):
 
     mySubscriber = MySubscriber()
 
-    rclpy.spin(mySubscriber)
+    try:
+        rclpy.spin(mySubscriber)
+    except KeyboardInterrupt:
+        pass
 
     mySubscriber.destroy_node()
     rclpy.shutdown()

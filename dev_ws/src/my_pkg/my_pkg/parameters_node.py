@@ -29,7 +29,13 @@ class MyParam(Node):
 def main(args=None):
     rclpy.init(args=args)
     myParam = MyParam()
-    rclpy.spin(myParam)
+
+    try:
+        rclpy.spin(myParam)
+    except KeyboardInterrupt:
+        pass
+
+    rclpy.shutdown()
 
 if __name__ == '__main__':
     main()
