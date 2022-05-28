@@ -13,7 +13,11 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
-        (os.path.join('share', package_name), glob('launch/*.launch.py'))
+        (os.path.join('share', package_name), glob('launch/*.launch.py')),
+        (os.path.join('share', package_name, 'description'), glob('description/*.xacro')),
+        (os.path.join('share', package_name, 'description'), glob('description/*.sdf')),
+        (os.path.join('share', package_name, 'description', 'partials'), glob('description/partials/*.xacro')),
+        (os.path.join('share', package_name, 'description', 'worlds'), glob('description/worlds/*.sdf')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -33,6 +37,8 @@ setup(
             'static_tf2_broadcaster = my_pkg.static_tf2_broadcaster:main',
             'tf2_listener = my_pkg.tf2_listener:main',
             'frame_tf2_broadcaster = my_pkg.frame_tf2_broadcaster:main',
+            'pose_subscriber = my_pkg.pose_subscriber:main',
+            'tf2_dist_calculator = my_pkg.tf2_dist_calculator:main',
         ],
     },
 )

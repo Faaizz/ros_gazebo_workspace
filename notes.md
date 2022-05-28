@@ -19,6 +19,8 @@
   - [Debugging](#debugging)
     - [ROS 2 Doctor (`ros2doctor`)](#ros-2-doctor-ros2doctor)
   - [Introduction to tf2](#introduction-to-tf2)
+  - [Setting up Robot Simulation in Ignition (Gazebo)](#setting-up-robot-simulation-in-ignition-gazebo)
+  - [References](#references)
 
 
 ## Basics
@@ -173,3 +175,46 @@ ros2 run tf2_ros static_transform_publisher x y z yaw pitch roll frame_id child_
 # or using quaterion
 ros2 run tf2_ros static_transform_publisher x y z qx qy qz qw frame_id child_frame_id
 ```
+
+
+## Setting up Robot Simulation in Ignition (Gazebo)
+```shell
+# Launch ignition simulation
+## -v 4: verbose (level 4)
+## -r: rn simulation on launch
+ign gazebo -v 4 -r <world_sdf>
+
+# List gazebo topics
+ign topic -l
+
+# Configuring ROS 2: ign-bridge
+sudo apt-get install ros-foxy-ros-ign-bridge
+
+# Create topic bridge: publish to ign
+ros2 run ros_ign_bridge parameter_bridge <topic_name>@<ros_data_type>]<ign_data_type>
+## E.g.:
+ros2 run ros_ign_bridge parameter_bridge /model/vehicle_blue/cmd_vel@geometry_msgs/msg/Twist]ignition.msgs.Twist
+## you can now publish to ros topic --- and effectively ign topic
+ros2 topic pub <topic_name> <ros_type> <data_value>
+## E.g.:
+ros2 topic pub /model/vehicle_blue/cmd_vel geometry_msgs/Twist  "linear: { x: 0.1 }"
+
+# Create topic bridge: subscribe to ign
+ros2 run ros_ign_bidge parameter_bridge <ign_topic_name>@<ros_data_type>[<ign_data_type> --ros-args -r <ign_topic_name>:=<ros_topic_name>
+## E.g.: make /lidar2 on ign available as /lidar_scan in ros
+ros2 run ros_ign_bridge parameter_bridge /lidar2@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan --ros-args -r /lidar2:=/laser_scan
+
+# teleop_twist_keyboard: Publish key-presses as Twist messages
+sudo apt-get install ros-foxy-teleop-twist-keyboard
+## remap publishing topic --- default: /cmd_vel
+ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r /cmd_vel:=/model/vehicle_blue/cmd_vel
+```
+
+## References
+- https://docs.ros.org/en/humble/Tutorials.html
+- https://docs.ros.org/en/humble/Tutorials/Simulators/Ignition/Setting-up-a-Robot-Simulation-Ignition.html
+- https://github.com/gazebosim/ros_gz/tree/ros2/ros_ign_gazebo
+
+x: -3.9359548171162846
+y: -0.0009390000027895057
+z: 0.19999915889241554
