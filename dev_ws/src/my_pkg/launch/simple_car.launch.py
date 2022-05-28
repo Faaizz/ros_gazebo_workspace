@@ -78,16 +78,13 @@ def generate_launch_description():
                 }
             ],
         ),
-        # Node(
-        #     package = 'ros_ign_gazebo',
-        #     executable = 'create',
-        #     arguments = [
-        #         ('-world ', 'default'),
-        #         ('-file ', PathJoinSubstitution([
-        #                 FindPackageShare('my_pkg'),
-        #                 'description', 'simple_car.sdf',
-        #             ]),
-        #         ),
-        #     ],
-        # ),
+        Node(
+            package = 'my_pkg',
+            executable = 'img_saver',
+            parameters = [
+                {
+                    'img_topic': '/camera',
+                }
+            ],
+        ),
     ])

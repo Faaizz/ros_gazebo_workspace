@@ -39,6 +39,7 @@ setup(
             'frame_tf2_broadcaster = my_pkg.frame_tf2_broadcaster:main',
             'pose_subscriber = my_pkg.pose_subscriber:main',
             'tf2_dist_calculator = my_pkg.tf2_dist_calculator:main',
+            'img_saver = my_pkg.img_saver:main',
         ],
     },
 )
