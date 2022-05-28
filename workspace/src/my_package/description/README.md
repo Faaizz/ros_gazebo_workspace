@@ -1,2 +1,0 @@
-# Robot Descriptions
-Mostly URDF :-)
