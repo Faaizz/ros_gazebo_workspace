@@ -19,7 +19,10 @@
   - [Debugging](#debugging)
     - [ROS 2 Doctor (`ros2doctor`)](#ros-2-doctor-ros2doctor)
   - [Introduction to tf2](#introduction-to-tf2)
-  - [Setting up Robot Simulation in Ignition (Gazebo)](#setting-up-robot-simulation-in-ignition-gazebo)
+  - [Ignition Gazebo](#ignition-gazebo)
+    - [Setting up Robot Simulation in Ignition (Gazebo)](#setting-up-robot-simulation-in-ignition-gazebo)
+    - [Actors](#actors)
+      - [Types](#types)
   - [References](#references)
 
 
@@ -176,8 +179,8 @@ ros2 run tf2_ros static_transform_publisher x y z yaw pitch roll frame_id child_
 ros2 run tf2_ros static_transform_publisher x y z qx qy qz qw frame_id child_frame_id
 ```
 
-
-## Setting up Robot Simulation in Ignition (Gazebo)
+## Ignition Gazebo
+### Setting up Robot Simulation in Ignition (Gazebo)
 ```shell
 # Launch ignition simulation
 ## -v 4: verbose (level 4)
@@ -209,6 +212,12 @@ sudo apt-get install ros-foxy-teleop-twist-keyboard
 ## remap publishing topic --- default: /cmd_vel
 ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r /cmd_vel:=/model/vehicle_blue/cmd_vel
 ```
+
+### Actors
+Actors are animated models that are available as 3D displays and meshes in simulations but not affected by the physics of the simulation environment.
+#### Types
+- Skeleton Animations: Relative motion between links in a model
+- Trajectory Animation: Motion of the entire model along a predefined trajectory
 
 ## References
 - https://docs.ros.org/en/humble/Tutorials.html
